@@ -11,6 +11,7 @@ interface Course {
   courseId: string;
   courseTitle: string;
   instructors: string[];
+  isEnrolled: boolean;
 }
 export type { Course };
 

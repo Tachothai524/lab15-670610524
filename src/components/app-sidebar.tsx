@@ -1,5 +1,6 @@
 import { BookOpen, Calendar, Home, Settings } from "lucide-react";
 import { Link, useLocation } from "react-router";
+import { currentUser } from "@/lib/mock-data"
 
 import {
   Sidebar,
@@ -11,6 +12,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarFooter,
 } from "@/components/ui/sidebar";
 
 const items = [
@@ -49,6 +51,29 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
+      <SidebarFooter className="border-t border-sidebar-border p-4">
+        <div className="flex items-center gap-3">
+          {/* วงกลมไอคอนโปรไฟล์สีม่วง[cite: 22] */}
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-purple-600 text-white">
+            <img
+              src={currentUser.avatar}
+              alt="Profile"
+              className="h-9 w-9 rounded-full object-cover"
+            />
+          </div>
+
+          {/* ชื่อและป้ายกำกับ STUDENT[cite: 22] */}
+          <div className="flex flex-col items-start leading-tight">
+            <span className="text-sm font-semibold text-sidebar-foreground">
+              {currentUser.nickname}
+            </span>
+            <span className="mt-1 rounded-full border border-neutral-300 dark:border-neutral-700 px-2 py-0.5 text-[10px] font-medium text-neutral-600 dark:text-neutral-400">
+              {currentUser.role}
+            </span>
+          </div>
+        </div>
+      </SidebarFooter>
     </Sidebar>
   );
 }
