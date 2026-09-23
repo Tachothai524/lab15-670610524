@@ -15,6 +15,31 @@ export default function Enrollent() {
     );
   };
 
+  const getThaiCurrentDateTime = () => {
+    const thaiMonths = [
+      "ม.ค.",
+      "ก.พ.",
+      "มี.ค.",
+      "เม.ย.",
+      "พ.ค.",
+      "มิ.ย.",
+      "ก.ค.",
+      "ส.ค.",
+      "ก.ย.",
+      "ต.ค.",
+      "พ.ย.",
+      "ธ.ค.",
+    ];
+    const now = new Date();
+    const day = now.getDate();
+    const month = thaiMonths[now.getMonth()];
+    const year = now.getFullYear() + 543; // แปลง ค.ศ. เป็น พ.ศ.
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+
+    return `${day} ${month} ${year} ${hours}:${minutes}`;
+  };
+
   const handleEnroll = ({ courseId }:EnrollmentPayload) => {
     setAvailableCourses((prevCourses) =>
       prevCourses.map((c) =>
@@ -47,7 +72,7 @@ export default function Enrollent() {
             key={course.courseId}
             course={course}
             student={currentStudent}
-            enrolledAt={course.courseId}
+            enrolledAt={getThaiCurrentDateTime()}
             isEnroll={course.isEnrolled}
             onUnenroll={() => handleUnenroll(course.courseId)}
           />
